@@ -48,6 +48,7 @@ The system is intentionally split into clear responsibilities:
 ---
 
 ## Project Structure
+```bash
 config/
 ├── manage.py
 ├── config/
@@ -68,7 +69,7 @@ config/
 ├── tasks.py
 ├── views.py
 └── migrations/
-
+```
 
 ---
 
