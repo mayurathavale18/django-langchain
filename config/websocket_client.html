@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Task WebSocket Client</title>
+    <style>
+      body {
+        font-family: monospace;
+        padding: 20px;
+      }
+      #log {
+        border: 1px solid #ccc;
+        padding: 10px;
+        height: 300px;
+        overflow-y: auto;
+        background: #111;
+        color: #0f0;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>WebSocket Task Monitor</h2>
+
+    <label>
+      Task ID:
+      <input id="taskId" value="1" />
+    </label>
+    <button onclick="connect()">Connect</button>
+
+    <pre id="log"></pre>
+
+    <script>
+      let socket;
+
+      function log(msg) {
+        const el = document.getElementById("log");
+        el.textContent += msg + "\n";
+        el.scrollTop = el.scrollHeight;
+      }
+
+      function connect() {
+        const taskId = document.getElementById("taskId").value;
+
+        if (socket) {
+          socket.close();
+        }
+
+        const url = `ws://localhost:8000/ws/tasks/${taskId}/`;
+        log("Connecting to " + url);
+
+        socket = new WebSocket(url);
+
+        socket.onopen = () => {
+          log("CONNECTED");
+        };
+
+        socket.onmessage = (event) => {
+          log("MESSAGE: " + event.data);
+        };
+
+        socket.onerror = (event) => {
+          log("ERROR");
+          console.error(event);
+        };
+
+        socket.onclose = () => {
+          log("DISCONNECTED");
+        };
+      }
+    </script>
+  </body>
+</html>
+
