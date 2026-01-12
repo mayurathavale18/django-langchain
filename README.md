@@ -105,7 +105,7 @@ Ensure the following are installed and running:
 pip install django djangorestframework channels channels-redis celery redis psycopg2-binary daphne
 ```
 
-### 3. create a virutal env && activate it to use pip ( I use venv for it & I don't have python installed gloabally so I only use virutal envs whenever needed ):
+### 3. Create a virutal env & activate it to use pip ( I use venv for it & I don't have python installed gloabally so I only use virutal envs whenever needed ):
 
 ```bash
 python3 -m venv venv && source venv/bin/activate      # for linux and mac ( check equivalent commands for other systems )
