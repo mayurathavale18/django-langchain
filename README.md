@@ -137,12 +137,12 @@ python manage.py migrate
 
 ### 6. Start Services (Separate Terminals)
 
-- redis
+- Redis
 ```bash
 redis-server
 ```
 
-- celery worker
+- Celery worker
 ```bash
 celery -A config worker -l info
 ```
@@ -156,13 +156,13 @@ python manage.py runserver
 
 ## Api Usage
 
-### 1. create a task :
+### 1. Create a task :
 
 ```bash
 curl -X POST http://127.0.0.1:8000/api/tasks/ -H "Content-Type: application/json" -d '{"title": "example task"}'
 ```
 
-### response :
+### Response :
 ```json
 {
   "id": 1,
@@ -172,7 +172,7 @@ curl -X POST http://127.0.0.1:8000/api/tasks/ -H "Content-Type: application/json
 }
 ```
 
-### 2. list tasks
+### 2. List tasks
 
 ```bash
 curl http://127.0.0.1:8000/api/tasks/ -H "Content-Type: application/json"
@@ -180,15 +180,15 @@ curl http://127.0.0.1:8000/api/tasks/ -H "Content-Type: application/json"
 
 ---
 
-## websocket usage
+## Websocket usage
 
-### 1. endpoint :
+### 1. Endpoint :
 
 ```bash
 ws://localhost:8000/ws/tasks/<task_id>/
 ```
 
-### 2. example client : ( check my basic client at [websocket_client.html](https://github.com/mayurathavale18/django-langchain/blob/master/config/websocket_client.html)
+### 2. Example client : ( check my basic client at [websocket_client.html](https://github.com/mayurathavale18/django-langchain/blob/master/config/websocket_client.html)
 
 ```bash
 # can use this in any browser console ( make sure to be on a local server page first, else it will throw connection error. 
@@ -199,14 +199,14 @@ ws.onmessage = e => console.log("MESSAGE:", e.data);
 ws.onclose = () => console.log("DISCONNECTED");
 ```
 
-### expected output :
+### Expected output :
 ```
 MESSAGE: {"status":"PROCESSING"}
 MESSAGE: {"status":"COMPLETED"}
 ```
 ---
 
-## why websockets ?
+## Why websockets ?
 
 - REST APIs expose state
 - WebSockets expose events
